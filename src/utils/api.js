@@ -71,6 +71,7 @@ const put = async (path, payload) => {
     });
 };
 
+
 const remove = async (path, payload) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -78,10 +79,15 @@ const remove = async (path, payload) => {
                 URL + path,
                 {
                     method: "DELETE",
+                    mode: "cors",
+                    cache: "no-cache",
+                    credentials: "same-origin",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(payload)
+                    redirect: "follow",
+                    referrerPolicy: "no-referrer",
+                    body: JSON.stringify(payload),
                 }
             );
             resolve(response.json());
@@ -90,6 +96,5 @@ const remove = async (path, payload) => {
         }
     });
 };
-
 
 export { get, post, put, remove };
