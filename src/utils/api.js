@@ -75,17 +75,13 @@ const remove = async (path, payload) => {
     return new Promise(async (resolve, reject) => {
         try {
             const response = await fetch(
-                URL + path + new URLSearchParams(payload).toString(),
+                URL + path,
                 {
                     method: "DELETE",
-                    mode: "cors",
-                    cache: "no-cache",
-                    credentials: "same-origin",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    redirect: "follow",
-                    referrerPolicy: "no-referrer",
+                    body: JSON.stringify(payload)
                 }
             );
             resolve(response.json());
